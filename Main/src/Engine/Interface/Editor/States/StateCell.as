@@ -1,5 +1,6 @@
 package Engine.Interface.Editor.States {
 import Display.Text.SimpleText;
+import Display.Util.ColorUtil;
 import Display.Util.TextUtil;
 
 import Engine.Behaviors.Modals.Behavior;
@@ -44,15 +45,14 @@ public class StateCell extends Sprite {
 
         var behav:BehaviorDb = Parameters.data_["targetBehavior"];
         var name:String = behav.statesList_[index].id_;
-        this.nameText = new SimpleText(18, 0xffffff, false);
+        this.nameText = new SimpleText(16, 0xffffff, false);
         this.nameText.x = 20;
-        this.nameText.y = 9;
+        this.nameText.y = 4;
         TextUtil.handleText(this.nameText, name, this);
 
         this.background.graphics.clear();
-        this.background.graphics.lineStyle(2, 0x101010);
-        this.background.graphics.beginFill(0x151515, 1);
-        this.background.graphics.drawRoundRect(0, 0, Editor.INSET_WIDTH - 20, 40, 15, 15);
+        this.background.graphics.beginFill(ColorUtil.STATE_CELL_COLOR, 0.9);
+        this.background.graphics.drawRect(0, 0, Editor.INSET_WIDTH - 20, 30);
         this.background.graphics.endFill();
     }
 
@@ -79,7 +79,7 @@ public class StateCell extends Sprite {
         var state:Object = behav.statesList_[this.index];
         var actions:Array = state.actions_;
 
-        var yPos:int = 45;
+        var yPos:int = 30;
         for (var i:int = 0; i < actions.length; i++) {
             var action:Object = actions[i];
             var cell:*;
@@ -99,7 +99,7 @@ public class StateCell extends Sprite {
             }
 
             cell.y = yPos;
-            yPos += cell.height + 5;
+            yPos += cell.height;
             addChild(cell);
         }
         this.expanded = true;
