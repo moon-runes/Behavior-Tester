@@ -12,5 +12,8 @@ public class ColorUtil {
 
     public static const PASSIVE_COLOR:uint = 0x223822;
     public static const PASSIVE_COLOR_ALT:uint = 0x111c11;
+
+    public static const NEW_COLOR:uint = 0x32396b;
+    public static const NEW_COLOR_ALT:uint = 0x242845;
 }
 }

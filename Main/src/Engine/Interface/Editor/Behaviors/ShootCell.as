@@ -23,9 +23,6 @@ public class ShootCell extends BehaviorCell {
     public var actionText:SimpleText;
     private var parameters:Vector.<Sprite>;
 
-    private var container:Sprite;
-    private var inset:Sprite;
-
     public var CHECK:Array;
 
     public function ShootCell(index:int, host:StateCell, behavior:Behavior) {
@@ -36,7 +33,6 @@ public class ShootCell extends BehaviorCell {
         var shoot:Shoot = behavior as Shoot;
         this.shoot = shoot;
 
-        drawBackground();
         addHeader();
         setParams();
         addParams();
@@ -89,16 +85,6 @@ public class ShootCell extends BehaviorCell {
         this.parameters[5].y = 62;
         this.parameters[6].x = 10;
         this.parameters[6].y = 62;
-    }
-
-    private function drawBackground():void
-    {
-        this.container = GraphicsUtil.drawTransparentWindow(105, 90, ColorUtil.HOSTILE_COLOR);
-        addChild(this.container);
-
-        this.inset = GraphicsUtil.drawTransparentWindow(Editor.INSET_WIDTH - 125, 90, ColorUtil.HOSTILE_COLOR_ALT);
-        this.inset.x = 105;
-        addChild(this.inset);
     }
 }
 }

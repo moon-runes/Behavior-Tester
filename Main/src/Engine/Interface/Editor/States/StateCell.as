@@ -13,6 +13,7 @@ import Engine.Interface.Editor;
 import Engine.Interface.Editor.Behaviors.BehaviorCell;
 import Engine.Interface.Editor.Behaviors.ShootCell;
 import Engine.Interface.Editor.Behaviors.WanderCell;
+import Engine.Interface.Editor.NewCell;
 
 import flash.display.Sprite;
 import flash.events.MouseEvent;
@@ -80,7 +81,7 @@ public class StateCell extends Sprite {
         var actions:Array = state.actions_;
 
         var yPos:int = 30;
-        for (var i:int = 0; i < actions.length; i++) {
+        for (var i:int = 0; i < actions.length + 1; i++) {
             var action:Object = actions[i];
             var cell:*;
             switch (true) {
@@ -93,8 +94,7 @@ public class StateCell extends Sprite {
                     cell = new WanderCell(i, this, wa);
                     break;
                 default:
-                    var bh:Behavior = new Behavior();
-                    cell = new BehaviorCell(i, this, bh);
+                    cell = new NewCell(i, this);
                     break;
             }
 

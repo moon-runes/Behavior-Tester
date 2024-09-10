@@ -138,15 +138,23 @@ public class Editor extends Sprite {
                 this.stateCells[i].y = 5 + (this.stateCells[i - 1].height * i);
         }
 
+        if (this.scrollBar)
+            if (this.stateCells[len].y < 400)
+            {
+                this.inset.removeChild(this.scrollBar);
+                this.scrollBar = null;
+            }
+
         if (!this.scrollBar)
-        {
-            this.scrollBar = new Scrollbar(6, 650);
-            this.scrollBar.setIndicatorSize(this.editorMask.height, this.editorBounds.height);
-            this.scrollBar.x = INSET_WIDTH - this.scrollBar.width;
-            this.scrollBar.y = this.editorMask.y + 10;
-            this.scrollBar.addEventListener("change", onScrollBarChange);
-            this.inset.addChild(this.scrollBar);
-        }
+            if (this.stateCells[len].y > 400)
+            {
+                this.scrollBar = new Scrollbar(6, 563);
+                this.scrollBar.setIndicatorSize(this.editorMask.height, this.editorBounds.height);
+                this.scrollBar.x = INSET_WIDTH - this.scrollBar.width - 3;
+                this.scrollBar.y = this.editorMask.y + 5;
+                this.scrollBar.addEventListener("change", onScrollBarChange);
+                this.inset.addChild(this.scrollBar);
+            }
     }
 
     private function onScrollBarChange(event:Event) : void

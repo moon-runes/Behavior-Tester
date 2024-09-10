@@ -21,12 +21,8 @@ public class WanderCell extends BehaviorCell {
 
     public var wander:Wander;
     public var actionText:SimpleText;
+    public var editTypes:Array;
     private var parameters:Vector.<Sprite>;
-
-    private var container:Sprite;
-    private var inset:Sprite;
-
-    public var CHECK:Array;
 
     public function WanderCell(index:int, host:StateCell, behavior:Behavior) {
         super(index, host, behavior);
@@ -51,7 +47,7 @@ public class WanderCell extends BehaviorCell {
 
     private function setParams():void
     {
-        CHECK = [false];
+        editTypes = [false];
         PARAMETERS = [this.wander.speed];
     }
 
@@ -60,7 +56,7 @@ public class WanderCell extends BehaviorCell {
         this.parameters = new Vector.<Sprite>();
         for (var i:int = 0; i < PARAMETERS.length; i++)
         {
-            if (CHECK[i])
+            if (editTypes[i])
                 this.parameters[i] = new CellCheck(this, i);
             else
                 this.parameters[i] = new CellParameter(this, i);
